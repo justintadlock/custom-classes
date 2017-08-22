@@ -1,18 +1,35 @@
 === Custom Classes ===
-Contributors: greenshady
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3687060
-Tags: admin, password
-Requires at least: 3.3
-Tested up to: 3.3.1
-Stable tag: 0.1
 
-Allows users to create custom post and body classes on a per-post basis.
+Contributors: greenshady
+Donate link: https://themehybrid.com/donate
+Tags: admin, password
+Requires at least: 4.8
+Tested up to: 4.8.1
+Stable tag: 1.0.0
+
+Allows users to create custom classes on a per-post/term basis.
 
 == Description ==
 
-The Custom Classes plugin allows you to create custom classes for posts (when `post_class()` is called) and for the `<body>` class (when `body_class()` is called).  It creates a meta box on the edit post screen in the admin with two input boxes for adding your custom classes.
+The Custom Classes plugin allows you to create custom classes for posts (when `post_class()` is called) and for the `<body>` class (when `body_class()` is called).  It creates a meta box on the edit post and edit term screens in the admin with input boxes for adding your custom classes.
 
 Custom post classes are added whenever your theme calls the `post_class()` function, which is generally whenever a post is shown.  Custom body classes are added on the single view of the post whenever your theme calls the `body_class()` function.
+
+### Like this plugin?
+
+Please consider helping the cause by:
+
+* [Making a donation](https://themehybrid.com/donate).
+* [Signing up at my site](https://themehybrid.com/club).
+* [Rating the plugin](https://wordpress.org/support/view/plugin-reviews/custom-classes?rate=5#postform).
+
+### Professional Support
+
+If you need professional plugin support from me, the plugin author, you can access the support forums at [Theme Hybrid](https://themehybrid.com/board/topics), which is a professional WordPress help/support site where I handle support for all my plugins and themes for a community of 75,000+ users (and growing).
+
+### Plugin Development
+
+If you're a theme author, plugin author, or just a code hobbyist, you can follow the development of this plugin on it's [GitHub repository](https://github.com/justintadlock/custom-classes).
 
 == Installation ==
 
@@ -38,7 +55,7 @@ Certainly.  This plugin works with any public post type on your site.  It's not 
 
 = It's not working! =
 
-Most likely, this means your theme isn't using the appropriate functions (`post_class()` and `body_class()`).  You'll need to talk to your theme author to get them to fix this.  Or, better yet, use a correctly-coded theme from <a href="http://themehybrid.com">Theme Hybrid</a>!
+Most likely, this means your theme isn't using the appropriate functions (`post_class()` and `body_class()`).  You'll need to talk to your theme author to get them to fix this.  Or, better yet, use a correctly-coded theme from <a href="https://themehybrid.com/themes">Theme Hybrid</a>!
 
 == Screenshots ==
 
@@ -47,6 +64,4 @@ Most likely, this means your theme isn't using the appropriate functions (`post_
 
 == Changelog ==
 
-**Version 0.1**
-
-* Plugin launch.  Everything's new!
+The change log is located in the `changelog.md` file in the plugin folder.  You may also [view the change log](https://github.com/justintadlock/custom-classes/blob/master/changelog.md) online.
