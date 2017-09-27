@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.0.0] - 2017-08-22
+## [1.0.0] - 2017-09-27
 
 ### Added
 
@@ -8,6 +8,7 @@
 
 ### Changed
 
+* PHP 5.3.0+ is now required.
 * Overhauled the entire plugin from the ground up.
 
 ## [0.1.0]

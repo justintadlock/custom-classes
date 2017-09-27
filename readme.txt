@@ -2,10 +2,13 @@
 
 Contributors: greenshady
 Donate link: https://themehybrid.com/donate
-Tags: admin, password
+Tags: classes
 Requires at least: 4.8
-Tested up to: 4.8.1
+Tested up to: 4.8.2
+Requires PHP: 5.3
 Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Allows users to create custom classes on a per-post/term basis.
 
@@ -31,29 +34,23 @@ If you need professional plugin support from me, the plugin author, you can acce
 
 If you're a theme author, plugin author, or just a code hobbyist, you can follow the development of this plugin on it's [GitHub repository](https://github.com/justintadlock/custom-classes).
 
-== Installation ==
-
-1. Upload `custom-classes` to the `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Go to your user profile in the admin to select whether to prevent password resetting.
-
 == Frequently Asked Questions ==
 
-= Why was this plugin created? =
+### Why was this plugin created?
 
 I wanted a quick and easy way to add styles to my posts without having to make a tag, create a category, or use post formats.  Those solutions are great, but they're not ideal for every situation.  By using a custom class, I have complete control over post styles.
 
-= How do I use it? =
+### How do I use it?
 
-A meta box named "Classes" gets added to the edit post screen in the admin.  From there, you can input a custom post and/or body class for individual posts.
+A meta box named "Classes" gets added to the edit post screen in the admin.  From there, you can input a custom post and/or body class for individual posts.  On the edit/new term (category, tag, etc.) screen, a new field labeled "Body Class" is also available.
 
 Of course, you actually have to style the class in your theme's `style.css` file for anything to actually change on the front end.  This plugin just outputs the classes for you.  It's up to you to decide how to use them.
 
-= Will this work with other post types? =
+## Will this work with custom post types?
 
 Certainly.  This plugin works with any public post type on your site.  It's not just limited to the "post" post type.
 
-= It's not working! =
+### It's not working!
 
 Most likely, this means your theme isn't using the appropriate functions (`post_class()` and `body_class()`).  You'll need to talk to your theme author to get them to fix this.  Or, better yet, use a correctly-coded theme from <a href="https://themehybrid.com/themes">Theme Hybrid</a>!
 
