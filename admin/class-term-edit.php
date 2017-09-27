@@ -56,8 +56,6 @@ final class Term_Edit {
 	 */
 	public function load() {
 
-		// current user can check
-
 		$screen = get_current_screen();
 
 		// Add the form fields.

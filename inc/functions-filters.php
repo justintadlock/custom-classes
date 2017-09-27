@@ -10,26 +10,28 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-1.0.html
  */
 
+namespace Custom_Classes;
+
 # Register post type support.
-add_action( 'init', 'custom_classes_post_type_support' );
+add_action( 'init', __NAMESPACE__ . '\post_type_support' );
 
 # Register metadata.
-add_action( 'init', 'custom_classes_register_meta' );
+add_action( 'init', __NAMESPACE__ . '\register_meta' );
 
 # Filter classes on the front end.
-add_filter( 'body_class', 'custom_classes_body_class'        );
-add_filter( 'post_class', 'custom_classes_post_class', 10, 3 );
+add_filter( 'body_class', __NAMESPACE__ . '\body_class'        );
+add_filter( 'post_class', __NAMESPACE__ . '\post_class', 10, 3 );
 
 /**
  * Adds post type support for 'custom-classes' to all 'public' post types registered.
  * To unregister support for custom classes for a specific post type, use the
  * `remove_post_type_support()` function.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void
  */
-function custom_classes_post_type_support() {
+function post_type_support() {
 
 	$post_types = get_post_types( array( 'public' => true ) );
 
@@ -40,35 +42,35 @@ function custom_classes_post_type_support() {
 /**
  * Registers the '_custom_body_class' and '_custom_post_class' meta keys for posts.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void
  */
-function custom_classes_register_meta() {
+function register_meta() {
 
 	$args = array(
 		'type'              => 'string',
 		'single'            => true,
-		'sanitize_callback' => 'custom_classes_sanitize_meta',
+		'sanitize_callback' => __NAMESPACE__ . '\custom_classes_sanitize_meta',
 		'auth_callback'     => '__return_false',
 		'show_in_rest'      => true
 	);
 
-	register_meta( 'post', '_custom_body_class', $args );
-	register_meta( 'post', '_custom_post_class', $args );
-	register_meta( 'term', '_custom_body_class', $args );
+	\register_meta( 'post', '_custom_body_class', $args );
+	\register_meta( 'post', '_custom_post_class', $args );
+	\register_meta( 'term', '_custom_body_class', $args );
 }
 
 /**
  * Checks if viewing a single post and if the post has a custom body class registered.  If so, it adds the class
  * to the array of body classes.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  array $classes
  * @return array
  */
-function custom_classes_body_class( $classes ) {
+function body_class( $classes ) {
 
 	if ( is_singular() ) {
 
@@ -91,14 +93,14 @@ function custom_classes_body_class( $classes ) {
 /**
  * Checks if a post has a custom post class and adds it to the post wrapper element's classes.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  array   $classes
  * @param  string  $class
  * @param  int     $post_id
  * @return array
  */
-function custom_classes_post_class( $classes, $class, $post_id ) {
+function post_class( $classes, $class, $post_id ) {
 
 	$custom_class = get_post_meta( $post_id, '_custom_post_class', true );
 
@@ -111,14 +113,14 @@ function custom_classes_post_class( $classes, $class, $post_id ) {
 /**
  * Callback function for sanitizing the meta value when add_post_meta() or update_post_meta() are called.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  string  $meta_value
  * @param  string  $meta_key
  * @param  string  $meta_type
  * @return string
  */
-function custom_classes_sanitize_meta( $meta_value, $meta_key, $meta_type ) {
+function sanitize_meta( $meta_value, $meta_key, $meta_type ) {
 
 	return sanitize_html_class( $meta_value );
 }
