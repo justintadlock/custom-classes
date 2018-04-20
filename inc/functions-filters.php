@@ -51,7 +51,7 @@ function register_meta() {
 	$args = array(
 		'type'              => 'string',
 		'single'            => true,
-		'sanitize_callback' => __NAMESPACE__ . '\custom_classes_sanitize_meta',
+		'sanitize_callback' => __NAMESPACE__ . '\sanitize_meta',
 		'auth_callback'     => '__return_false',
 		'show_in_rest'      => true
 	);
