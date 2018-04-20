@@ -3,7 +3,7 @@
  * Handles the functionality on the edit post screen.
  *
  * @package   CustomClasses
- * @version   1.0.0
+ * @version   1.1.0
  * @author    Justin Tadlock <justintadlock@gmail.com>
  * @copyright Copyright (c) 2012-2017, Justin Tadlock
  * @link      https://themehybrid.com/plugins/custom-classes
@@ -68,7 +68,7 @@ final class Post_Edit {
 	public function add_meta_boxes( $post_type ) {
 
 		if ( post_type_supports( $post_type, 'custom-classes' ) )
-			add_meta_box( 'custom-classes', __( 'Classes', 'custom-classes' ), array( $this, 'meta_box' ), $post_type, 'side', 'default' );
+			add_meta_box( 'custom-classes', __( 'Additional CSS Classes', 'custom-classes' ), array( $this, 'meta_box' ), $post_type, 'side', 'default' );
 	}
 
 	/**
@@ -86,14 +86,14 @@ final class Post_Edit {
 
 		<p>
 			<label>
-				<?php esc_html_e( 'Body Class', 'custom-classes' ); ?>
+				<?php esc_html_e( 'Body Classes', 'custom-classes' ); ?>
 				<input type="text" class="widefat" name="custom-body-class" value="<?php echo esc_attr( get_post_meta( $post->ID, '_custom_body_class', true ) ); ?>" />
 			</label>
 		</p>
 
 		<p>
 			<label>
-				<?php esc_html_e( 'Post Class', 'custom-classes' ); ?>
+				<?php esc_html_e( 'Post Classes', 'custom-classes' ); ?>
 				<input type="text" class="widefat" name="custom-post-class" value="<?php echo esc_attr( get_post_meta( $post->ID, '_custom_post_class', true ) ); ?>" />
 			</label>
 		</p>
@@ -112,8 +112,8 @@ final class Post_Edit {
 			return;
 
 		$metadata = array(
-			'_custom_body_class' => isset( $_POST['custom-body-class'] ) ? sanitize_html_class( $_POST['custom-body-class'] ) : '',
-			'_custom_post_class' => isset( $_POST['custom-post-class'] ) ? sanitize_html_class( $_POST['custom-post-class'] ) : ''
+			'_custom_body_class' => isset( $_POST['custom-body-class'] ) ? sanitize_token_list(  str_replace( ',', ' ', $_POST['custom-body-class'] ) ) : '',
+			'_custom_post_class' => isset( $_POST['custom-post-class'] ) ? sanitize_token_list(  str_replace( ',', ' ', $_POST['custom-post-class'] ) ) : ''
 		);
 
 		foreach ( $metadata as $meta_key => $new_meta_value ) {
