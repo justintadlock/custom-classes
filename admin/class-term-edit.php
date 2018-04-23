@@ -3,7 +3,7 @@
  * Handles the functionality on the term edit screen.
  *
  * @package   CustomClasses
- * @version   1.0.0
+ * @version   1.1.0
  * @author    Justin Tadlock <justintadlock@gmail.com>
  * @copyright Copyright (c) 2012-2017, Justin Tadlock
  * @link      https://themehybrid.com/plugins/custom-classes
@@ -74,7 +74,7 @@ final class Term_Edit {
 
 		<div class="form-field custom-body-class-wrap">
 
-			<label for="custom-body-class"><?php esc_html_e( 'Body Class', 'custom-classes' ); ?></label>
+			<label for="custom-body-class"><?php esc_html_e( 'Body Classes', 'custom-classes' ); ?></label>
 
 			<?php $this->display_field(); ?>
 
@@ -93,7 +93,7 @@ final class Term_Edit {
 		<tr class="form-field custom-body-class-wrap">
 
 			<th scope="row">
-				<label for="custom-body-class"><?php esc_html_e( 'Body Class', 'custom-classes' ); ?></label>
+				<label for="custom-body-class"><?php esc_html_e( 'Body Classes', 'custom-classes' ); ?></label>
 			</th>
 
 			<td><?php $this->display_field( $term ); ?></td>
@@ -135,7 +135,7 @@ final class Term_Edit {
 			return;
 
 		$old_class = get_term_meta( $term_id, '_custom_body_class', true );
-		$new_class = isset( $_POST['custom-body-class'] ) ? sanitize_html_class( $_POST['custom-body-class'] ) : '';
+		$new_class = isset( $_POST['custom-body-class'] ) ? sanitize_token_list( str_replace( ',', ' ', $_POST['custom-body-class'] ) ) : '';
 
 		if ( $old_class && '' === $new_class )
 			delete_term_meta( $term_id, '_custom_body_class' );

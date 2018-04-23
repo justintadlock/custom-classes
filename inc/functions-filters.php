@@ -3,7 +3,7 @@
  * Functions and filters.
  *
  * @package   CustomClasses
- * @version   1.0.0
+ * @version   1.1.0
  * @author    Justin Tadlock <justintadlock@gmail.com>
  * @copyright Copyright (c) 2012-2017, Justin Tadlock
  * @link      https://themehybrid.com/plugins/custom-classes
@@ -51,7 +51,7 @@ function register_meta() {
 	$args = array(
 		'type'              => 'string',
 		'single'            => true,
-		'sanitize_callback' => __NAMESPACE__ . '\custom_classes_sanitize_meta',
+		'sanitize_callback' => __NAMESPACE__ . '\sanitize_meta',
 		'auth_callback'     => '__return_false',
 		'show_in_rest'      => true
 	);
@@ -62,7 +62,7 @@ function register_meta() {
 }
 
 /**
- * Checks if viewing a single post and if the post has a custom body class registered.  If so, it adds the class
+ * Checks if viewing a single post and if the post has any custom body classes registered.  If so, it adds the classes
  * to the array of body classes.
  *
  * @since  1.0.0
@@ -74,24 +74,32 @@ function body_class( $classes ) {
 
 	if ( is_singular() ) {
 
-		$class = get_post_meta( get_queried_object_id(), '_custom_body_class', true );
+		$custom_classes = get_post_meta( get_queried_object_id(), '_custom_body_class', true );
 
-		if ( $class )
-			$classes[] = sanitize_html_class( $class );
+		if ( $custom_classes ) {
+			$terms = explode( ' ', sanitize_token_list( $custom_classes ) );
+			if ( is_array( $terms ) ) {
+				$classes = array_merge( $classes, $terms );
+			}
+		}
 
 	} else if ( is_tax() || is_category() || is_tag() ) {
 
-		$class = get_term_meta( get_queried_object_id(), '_custom_body_class', true );
+		$custom_classes = get_term_meta( get_queried_object_id(), '_custom_body_class', true );
 
-		if ( $class )
-			$classes[] = sanitize_html_class( $class );
+		if ( $custom_classes ) {
+			$terms = explode( ' ', sanitize_token_list( $custom_classes ) );
+			if ( is_array( $terms ) ) {
+				$classes = array_merge( $classes, $terms );
+			}
+		}
 	}
 
 	return $classes;
 }
 
 /**
- * Checks if a post has a custom post class and adds it to the post wrapper element's classes.
+ * Checks if a post has any custom post classes and adds them to the post wrapper element's classes.
  *
  * @since  1.0.0
  * @access public
@@ -102,10 +110,14 @@ function body_class( $classes ) {
  */
 function post_class( $classes, $class, $post_id ) {
 
-	$custom_class = get_post_meta( $post_id, '_custom_post_class', true );
+	$custom_classes = get_post_meta( $post_id, '_custom_post_class', true );
 
-	if ( $custom_class )
-		$classes[] = sanitize_html_class( $custom_class );
+	if ( $custom_classes ) {
+		$terms = explode( ' ', sanitize_token_list( $custom_classes ) );
+		if ( is_array( $terms ) ) {
+			$classes = array_merge( $classes, $terms );
+		}
+	}
 
 	return $classes;
 }
@@ -122,5 +134,22 @@ function post_class( $classes, $class, $post_id ) {
  */
 function sanitize_meta( $meta_value, $meta_key, $meta_type ) {
 
-	return sanitize_html_class( $meta_value );
+	return sanitize_token_list( $meta_value );
+}
+
+/**
+ * Sanitize a token list string, such as used in HTML rel and class attributes.
+ *
+ * @since 1.1.0
+ * @access public
+ * @param string|array $tokens List of tokens separated by spaces, or an array of tokens.
+ * @return string Sanitized token string list.
+ */
+function sanitize_token_list( $tokens ) {
+	if ( is_string( $tokens ) ) {
+		$tokens = preg_split( '/\s+/', trim( $tokens ) );
+	}
+	$tokens = array_map( 'sanitize_html_class', $tokens );
+	$tokens = array_filter( $tokens );
+	return join( ' ', $tokens );
 }

@@ -1,5 +1,15 @@
 # Change Log
 
+## [1.1.0] - 2018-04-20
+
+### Added
+
+* Can now use multiple classes, instead of only one.
+
+### Changed
+
+* Corrects an invalid santize_callback passed to register_meta
+
 ## [1.0.0] - 2017-09-27
 
 ### Added

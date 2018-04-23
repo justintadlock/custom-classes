@@ -13,16 +13,16 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: admin/class-post-edit.php:71
-msgid "Classes"
+msgid "Additional CSS Classes"
 msgstr ""
 
-#: admin/class-post-edit.php:89 admin/class-term-edit.php:79
-#: admin/class-term-edit.php:98
-msgid "Body Class"
+#: admin/class-post-edit.php:89 admin/class-term-edit.php:77
+#: admin/class-term-edit.php:96
+msgid "Body Classes"
 msgstr ""
 
 #: admin/class-post-edit.php:96
-msgid "Post Class"
+msgid "Post Classes"
 msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "Custom Classes"
