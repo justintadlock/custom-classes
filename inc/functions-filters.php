@@ -79,7 +79,7 @@ function body_class( $classes ) {
 		if ( $custom_classes ) {
 			$terms = explode( ' ', sanitize_token_list( $custom_classes ) );
 			if ( is_array( $terms ) ) {
-				array_merge( $classes, $terms );
+				$classes = array_merge( $classes, $terms );
 			}
 		}
 
@@ -90,7 +90,7 @@ function body_class( $classes ) {
 		if ( $custom_classes ) {
 			$terms = explode( ' ', sanitize_token_list( $custom_classes ) );
 			if ( is_array( $terms ) ) {
-				array_merge( $classes, $terms );
+				$classes = array_merge( $classes, $terms );
 			}
 		}
 	}
@@ -115,7 +115,7 @@ function post_class( $classes, $class, $post_id ) {
 	if ( $custom_classes ) {
 		$terms = explode( ' ', sanitize_token_list( $custom_classes ) );
 		if ( is_array( $terms ) ) {
-			array_merge( $classes, $terms );
+			$classes = array_merge( $classes, $terms );
 		}
 	}
 
