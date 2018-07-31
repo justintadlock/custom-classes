@@ -3,7 +3,7 @@
  * Plugin Name: Custom Classes
  * Plugin URI:  https://themehybrid.com/plugins/custom-classes
  * Description: Allows users to add custom post and body classes from the admin.
- * Version:     1.0.0
+ * Version:     1.1.0-dev
  * Author:      Justin Tadlock
  * Author URI:  http://justintadlock.com
  *
@@ -15,7 +15,7 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package   CustomClasses
- * @version   1.0.0
+ * @version   1.1.0
  * @author    Justin Tadlock <justintadlock@gmail.com>
  * @copyright Copyright (c) 2012-2017, Justin Tadlock
  * @link      https://themehybrid.com/plugins/custom-classes

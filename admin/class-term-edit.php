@@ -135,7 +135,7 @@ final class Term_Edit {
 			return;
 
 		$old_class = get_term_meta( $term_id, '_custom_body_class', true );
-		$new_class = isset( $_POST['custom-body-class'] ) ? sanitize_html_class( $_POST['custom-body-class'] ) : '';
+		$new_class = isset( $_POST['custom-body-class'] ) ? sanitize_class( $_POST['custom-body-class'] ) : '';
 
 		if ( $old_class && '' === $new_class )
 			delete_term_meta( $term_id, '_custom_body_class' );

@@ -112,8 +112,8 @@ final class Post_Edit {
 			return;
 
 		$metadata = array(
-			'_custom_body_class' => isset( $_POST['custom-body-class'] ) ? sanitize_html_class( $_POST['custom-body-class'] ) : '',
-			'_custom_post_class' => isset( $_POST['custom-post-class'] ) ? sanitize_html_class( $_POST['custom-post-class'] ) : ''
+			'_custom_body_class' => isset( $_POST['custom-body-class'] ) ? sanitize_class( $_POST['custom-body-class'] ) : '',
+			'_custom_post_class' => isset( $_POST['custom-post-class'] ) ? sanitize_class( $_POST['custom-post-class'] ) : ''
 		);
 
 		foreach ( $metadata as $meta_key => $new_meta_value ) {

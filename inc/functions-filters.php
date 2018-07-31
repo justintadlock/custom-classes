@@ -77,14 +77,14 @@ function body_class( $classes ) {
 		$class = get_post_meta( get_queried_object_id(), '_custom_body_class', true );
 
 		if ( $class )
-			$classes[] = sanitize_html_class( $class );
+			$classes[] = sanitize_class( $class );
 
 	} else if ( is_tax() || is_category() || is_tag() ) {
 
 		$class = get_term_meta( get_queried_object_id(), '_custom_body_class', true );
 
 		if ( $class )
-			$classes[] = sanitize_html_class( $class );
+			$classes[] = sanitize_class( $class );
 	}
 
 	return $classes;
@@ -105,7 +105,7 @@ function post_class( $classes, $class, $post_id ) {
 	$custom_class = get_post_meta( $post_id, '_custom_post_class', true );
 
 	if ( $custom_class )
-		$classes[] = sanitize_html_class( $custom_class );
+		$classes[] = sanitize_class( $custom_class );
 
 	return $classes;
 }
@@ -122,5 +122,20 @@ function post_class( $classes, $class, $post_id ) {
  */
 function sanitize_meta( $meta_value, $meta_key, $meta_type ) {
 
-	return sanitize_html_class( $meta_value );
+	return sanitize_class( $meta_value );
+}
+
+/**
+ * Sanitizes the HTML class.
+ *
+ * @since  1.1.0
+ * @access public
+ * @param  string  $class
+ * @return string
+ */
+function sanitize_class( $class ) {
+
+	$classes = array_map( 'sanitize_html_class', explode( ' ', $class ) );
+
+	return join( ' ', $classes );
 }
